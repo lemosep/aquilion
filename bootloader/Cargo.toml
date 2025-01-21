@@ -1,0 +1,14 @@
+[package]
+name = "bootloader"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+log = "0.4.25"
+uefi = { version = "0.33.0", features = [ "panic_handler", "logger" ] }
+
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+panic = "abort"
