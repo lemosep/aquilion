@@ -1,6 +1,25 @@
 debug/
 target/
 
+# Build artifacts
+bin/
+lib/
+target/
+*.a
+*.elf
+*.exe
+*.iso
+*.log
+*.o
+*.obj
+*.wasm
+Cargo.lock
+
+# IDEs
+*.swo
+*.swp
+*.vscode/
+
 **/*.rs.bk
 
 *.pdb
