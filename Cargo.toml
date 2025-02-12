@@ -1,0 +1,14 @@
+[package]
+name = "aquilion"
+version = "0.1.0"
+authors = ["The Maintainers of Aquilion"]
+homepage = "https://github.com/lemosep"
+
+[lib]
+crate-type = ["staticlib"]
+
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+panic = "abort"
