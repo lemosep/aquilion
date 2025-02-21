@@ -1,6 +1,7 @@
 [package]
 name = "aquilion"
 version = "0.1.0"
+edition = "2021"
 authors = ["The Maintainers of Aquilion"]
 homepage = "https://github.com/lemosep"
 
