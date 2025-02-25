@@ -62,17 +62,6 @@ pub struct ScreenChar {
     color_code: ColorCode
 }
 
-<<<<<<< HEAD
-=======
-pub struct Buffer<'a> {
-    chars: [[VolatilePtr<'a, ScreenChar>; BUFFER_HEIGHT]; BUFFER_WIDTH],
-} 
-
-// Mark Buffer as safe to send between threads.
-unsafe impl<'a> Send for Buffer<'a> {}
-unsafe impl<'a> Sync for Buffer<'a> {}
-
->>>>>>> refs/remotes/origin/feature-vga_buffer
 pub struct Writer {
     pub column_position: usize,
     pub color_code: ColorCode,
@@ -105,15 +94,6 @@ impl<'a> Writer {
             }
         }
     }
-<<<<<<< HEAD
-=======
-
-    pub fn write_str(&mut self, s: &str) {
-        for byte in s.bytes() {
-            self.write_byte(byte);
-        }
-    }
->>>>>>> refs/remotes/origin/feature-vga_buffer
     
     fn new_line(&mut self) {
         for row in 1..BUFFER_HEIGHT {
