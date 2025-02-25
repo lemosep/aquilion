@@ -13,3 +13,7 @@ panic = "abort"
 
 [profile.release]
 panic = "abort"
+
+[dependencies]
+spin = "0.9.8"
+volatile = "0.6.1"
