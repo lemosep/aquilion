@@ -1,8 +1,8 @@
-arch ?= x86_64
+arch ?= x86
 kernel := build/kernel-$(arch).bin
 iso := build/aquilion-$(arch).iso
 target ?= $(arch)
-aquilion := target/$(target)/debug/libaquilion.a
+rust_lib := target/$(target)/debug/libkernel.a
 
 linker_script := src/arch/$(arch)/linker.ld
 grub_cfg := src/arch/$(arch)/grub.cfg
@@ -10,12 +10,12 @@ assembly_source_files := $(wildcard src/arch/$(arch)/*.asm)
 assembly_object_files := $(patsubst src/arch/$(arch)/%.asm, \
 	build/arch/$(arch)/%.o, $(assembly_source_files))
 
-.PHONY: all clean run iso kernel
+.PHONY: all clean run iso cargo-build
 
 all: $(kernel)
 
 clean:
-	@rm -r build
+	@rm -rf build
 
 run: $(iso)
 	@qemu-system-x86_64 -cdrom $(iso)
@@ -29,12 +29,14 @@ $(iso): $(kernel) $(grub_cfg)
 	@grub-mkrescue -o $(iso) build/isofiles 2> /dev/null
 	@rm -r build/isofiles
 
-$(kernel): kernel $(aquilion) $(assembly_object_files) $(linker_script)
-	@ld -n -T $(linker_script) -o $(kernel)\
-	$(assembly_object_files) $(aquilion)
+$(kernel): cargo-build $(assembly_object_files)
+	@mkdir -p $(shell dirname $@)
+	@echo "Linking with $(rust_lib)"
+	@ld -n -T $(linker_script) -o $(kernel) $(assembly_object_files) $(rust_lib)
 
 kernel:
-	@cargo build
+	@cargo build -p kernel
+	@echo "Rust build complete"
 
 # compile assembly files
 build/arch/$(arch)/%.o: src/arch/$(arch)/%.asm

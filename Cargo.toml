@@ -1,18 +1,20 @@
-[package]
-name = "aquilion"
+[workspace]
+resolver = "2"
+members = [
+    "src/kernel"
+]
+
+[workspace.package]
 version = "0.1.0"
 edition = "2021"
 authors = ["The Maintainers of Aquilion"]
 homepage = "https://github.com/lemosep"
 
-[lib]
-crate-type = ["staticlib"]
+[workspace.dependencies]
+spin = "0.9.8"
 
 [profile.dev]
 panic = "abort"
 
 [profile.release]
 panic = "abort"
-
-[dependencies]
-spin = "0.9.8"
