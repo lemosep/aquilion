@@ -12,4 +12,7 @@ path = "src/kmain.rs"
 crate-type = ["staticlib"]
 
 [dependencies]
+multiboot2 = { workspace = true }
 spin = { workspace = true }
+x86_64 = { workspace = true }
+
