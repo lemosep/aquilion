@@ -11,7 +11,10 @@ authors = ["The Maintainers of Aquilion"]
 homepage = "https://github.com/lemosep"
 
 [workspace.dependencies]
+multiboot2 = { version = "0.23.1", default-features = false }
 spin = "0.9.8"
+x86_64 = "0.15.2"
+
 
 [profile.dev]
 panic = "abort"
