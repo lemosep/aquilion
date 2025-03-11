@@ -39,7 +39,6 @@ pub extern "C" fn kmain(mbi_ptr: usize) {
 
     let mb_start = mbi_ptr;
     let mb_end = mb_start + (boot_info.total_size() as usize);
-    
 
     let memory_map_tag = boot_info.memory_map_tag()
         .expect("Memory map tag required");
