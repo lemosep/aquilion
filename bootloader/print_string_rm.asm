@@ -1,6 +1,5 @@
 ; Function that prints a string stored in bx register - This function is 
-; used only in real mode 16-bit, as it uses BIOS functions.
-
+; used only in 16-bit real mode, as it uses BIOS functions.
 print_string:
 	mov ah, 0x0E		; BIOS teletype output
 
